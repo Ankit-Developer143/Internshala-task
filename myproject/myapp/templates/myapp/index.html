@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <title>{% block title %}home{% endblock %}</title>
+    <style>
+body{
+  background-color: whitesmoke;
+}
+
+
+        /* The sidebar menu */
+.sidenav {
+  height: 100%; 
+  width:263px;
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden; 
+  padding-top: 20px;
+}
+
+.sidenav a {
+ padding-top: 52px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+ 
+}
+
+
+.sidenav a:hover {
+  color: black;
+}
+
+
+.main {
+  margin-left: 500px; 
+  padding-top: 50px;
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+#selector , form{
+   border:0px;
+   outline:0px;
+   color: #8181A8;
+   font-weight: 500;
+   font-size: 20px;
+}
+{% block style %} {% endblock  %}
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg">
+  
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0 mr-2">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          {% if user.is_authenticated %}
+          <h6 class="ml-2">Hello,{{user.username}}</h6>
+        </div> 
+        {% endif %}
+        
+        
+          
+          
+        </form>
+      </div>
+    </nav>
+   <!-- Side navigation -->
+<div class="sidenav navbar-expand-lg" style="background-color: white; border: solid white;">
+  <a class="navbar-brand" href="#">Markytics</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Incident
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{% url 'createreport'  %}">incident</a>
+        <a class="dropdown-item">Others</a>
+      </div>
+    </li>
+  </ul>
+    <a href="{% url 'home' %}"><i class="fas fa-hotel">&nbsp;Dashboard</i></a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}"><i class='fas fa-unlock-alt' style='font-size:24px'>&nbsp;logout</i></a>
+    {% else %}
+    <a href="{% url 'login' %}"><i class='fas fa-unlock-alt' style='font-size:24px'>&nbsp;login</i></a>
+    <a href="{% url 'registration' %}"><i class='fas fa-unlock-alt' style='font-size:24px'>&nbsp;Rigistration</i></a> 
+    {% endif %}
+    
+    
+  </div>
+  
+  <!-- Page content -->
+  
+{% block body %}  
+<div class="main">
+  {% if user.is_authenticated %}
+  <h1>Hello,{{user.username}}</h1>
+
+
+  
+  
+  </div> 
+  
+  {% endif %}
+  
+  {% endblock  %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
