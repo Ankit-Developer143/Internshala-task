@@ -1,2 +1,2 @@
 # Internshala-task
-# for Demo
+# for Demo only basic
